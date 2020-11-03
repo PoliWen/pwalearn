@@ -1,5 +1,5 @@
 {
-  "name": "learning-pwa",
+  "name": "learn-pwa",
   "version": "0.1.0",
   "description": "some samples and blogs about how to start with your first PWA",
   "main": "app.js",
@@ -8,11 +8,6 @@
     "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "PWA",
-    "koa",
-    "sample"
-  ],
   "license": "ISC",
   "dependencies": {
     "https-proxy-agent": "^2.2.1",
