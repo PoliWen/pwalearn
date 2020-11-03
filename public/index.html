@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="theme-color" content="#5eace0" />
+
+    <!-- 针对safari（iOS）的添加到桌面功能进行相关设置 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="图书搜索">
+    <link rel="apple-touch-icon" href="img/icons/book-256.png">
+
+    <!-- IE的设置 -->
+    <meta name="application-name" content="图书搜索" />
+    <meta name="msapplication-TileColor" content="#222">
+    <meta name="msapplication-square70x70logo" content="img/icons/book-72.png" />
+    <meta name="msapplication-square150x150logo" content="img/icons/book-144.png" />
+    <meta name="msapplication-square310x310logo" content="img/icons/book-256.png" />
+
+    <title>PWA: 图书搜索</title>
+</head>
+
+<body>
+    <!--头部-->
+    <div class="header-c">
+        <div class="logo">
+            豆瓣
+        </div>
+        <div class="search-box">
+            <i class="search" id="js-search-btn"></i>
+            <input type="text" placeholder="关键词查询…" id="js-search-input">
+        </div>
+        <div class="goto-pc">
+            <img src="images/pc_icon.png" alt="">
+        </div>
+    </div>
+
+    <!---导航-->
+    <div class="nav-wrap">
+        <ul class="nav">
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color:#2384E8">找电影</h2>
+                    <span>影院热映</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color: #7A6ADB;">热播剧</h2>
+                    <span>影院热映</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color: #9F7860;">畅销书</h2>
+                    <span>畅销排行</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color: #2AB8CC;">找小组</h2>
+                    <span>志趣相投</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color: #F48F2E;">找音乐</h2>
+                    <span>新碟榜</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2 style="color: #42BD56;">豆品</h2>
+                    <span>生活美学</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="bangdan">
+            <h2 class="main-title">
+                <span>豆瓣榜单</span>
+                <a href="javascript:;">查看更多</a>
+            </h2>
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="left-title">
+
+                        </div>
+                        <div class="right-info">
+                            <span class="mask"></span>
+                            <p>1.肖申克的救赎<span>9.7</span></p>
+                            <p>2.霸王别姬<span>9.6</span></p>
+                            <p>3.阿甘正传<span>9.5</span></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-title">
+                            <span>豆瓣周榜</span>
+                            <span>华语口碑剧集</span>
+                        </div>
+                        <div class="right-info">
+                            <span class="mask"></span>
+                            <p>1.早餐中国 第三季<span>9.1</span></p>
+                            <p>2.霸王别姬<span>8.6</span></p>
+                            <p>3.阿甘正传<span>8</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="movie">
+            <h2 class="main-title">
+                <span>热映电影</span>
+                <a href="javascript:;">查看更多</a>
+            </h2>
+            <div class="list">
+                <ul>
+                    <li>
+                        <a>
+                            <img src="images/movie01.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="images/movie02.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="images/movie03.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="images/movie04.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="images/movie05.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="images/movie06.jpg" alt="">
+                        </a>
+                        <h3>数码宝贝</h3>
+                        <p class="score">
+                            评分：<span>7.6</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="notication-btn">
+            <button id="js-notification-btn" class="notify-btn">提醒</button>
+            <button id="js-sync-btn" class="sync-btn">同步</button>
+            <button id="js-sync-event-btn" class="sync-btn sync-event-btn">同步(event)</button>
+            <button id="js-sync-db-btn" class="sync-btn sync-db-btn">同步(db)</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-nav">
+            <ul>
+                <li>
+                    <a>关于豆瓣</a>
+                </li>
+                <li><a>意见反馈</a></li>
+                <li><a>App下载</a></li>
+            </ul>
+        </div>
+        <div class="coopyright">
+            Copyright © 2007-2019
+        </div>
+    </div>
+    <main>
+        <div id="js-loading" class="loading"></div>
+        <div id="js-tip" class="tip"></div>
+        <ul class="list" id="js-list"></ul>
+        <a id="js-thanks" class="thanks" href="https://developers.douban.com/wiki/?title=guide">- 本Demo基于豆瓣API，感谢豆瓣开放平台
+            -</a>
+    </main>
+    <section class="panel">
+        <p>
+            讲解如何用Node构建可扩展因特网应用，是全面的实用指南，
+            除了详细介绍Node提供的API外，还用大量篇幅介绍了服务
+            器事件驱动开发的重要概念。内容涉及跨服务器的并发连接、
+            非阻塞I/O和事件驱动的编程、如何支持各种数据库和数据存
+            储工具、NodeAPI的使用示例等。适合对JavaScript及编程
+            有一定程度了解的读者阅读。
+        </p>
+    </section>
+    <script type="text/javascript" src="./js/base64util.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
+</body>
+
+</html>
