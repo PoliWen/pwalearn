@@ -1,5 +1,5 @@
 /**
- * base64的相关操作，具体可以参考
+ * base64的相关操作
  */
 window.urlBase64ToUint8Array = function (base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);

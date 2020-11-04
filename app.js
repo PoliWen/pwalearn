@@ -5,8 +5,9 @@ const serve = require('koa-static');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
 const webpush = require('web-push');
+const open = require('open')
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 9898;
 const app = new Koa();
 const router = new Router();
 
@@ -24,24 +25,17 @@ router.get('/book', async (ctx, next) => {
     ctx.response.body = res;
 });
 
-/* ===================== */
-/* 使用web-push进行消息推送 */
-/* ===================== */
-const options = {
-    // proxy: 'http://localhost:1087' // 使用FCM（Chrome）需要配置代理
-};
+//使用web-push进行消息推送
 
-/**
- * VAPID值
- */
+// VAPID值
 const vapidKeys = {
-    publicKey: 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A',
-    privateKey: 'TVe_nJlciDOn130gFyFYP8UiGxxWd3QdH6C5axXpSgM'
+    publicKey: 'BNeKSRHLJBGSKnRBRvtzCbg36TheRuOvY3KsBLLmpjIuUHfpRl9JUr5IOGlLnwFkkM81jQhqAvkt3cyr4D001W4',
+    privateKey: 'aUv36dOSNmpO7sZQtp4L5ngolrsIuRHveekbut6hWJw'
 };
 
 // 设置web-push的VAPID值
 webpush.setVapidDetails(
-    'mailto:alienzhou16@163.com',
+    'mailto:kingw97@163.com',
     vapidKeys.publicKey,
     vapidKeys.privateKey
 );
@@ -51,6 +45,7 @@ webpush.setVapidDetails(
  */
 router.post('/subscription', koaBody(), async ctx => {
     let body = ctx.request.body;
+    console.log(body);
     await util.saveRecord(body);
     ctx.response.body = {
         status: 0
@@ -64,7 +59,7 @@ router.post('/subscription', koaBody(), async ctx => {
  * @param {*} data
  */
 function pushMessage(subscription, data = {}) {
-    webpush.sendNotification(subscription, data, options).then(data => {
+    webpush.sendNotification(subscription, data).then(data => {
         console.log('push service的相应数据:', JSON.stringify(data));
         return;
     }).catch(err => {
@@ -79,8 +74,7 @@ function pushMessage(subscription, data = {}) {
 }
 
 /**
- * 消息推送API，可以在管理后台进行调用
- * 本例子中，可以直接post一个请求来查看效果
+ * 消息推送API
  */
 router.post('/push', koaBody(), async ctx => {
     let {
@@ -91,33 +85,24 @@ router.post('/push', koaBody(), async ctx => {
         uniqueid
     }) : await util.findAll();
     let status = list.length > 0 ? 0 : -1;
-    pushMessage(subscription, JSON.stringify({
-        'xxx': 'mmp'
-    }));
+
+    console.log(list);
+    console.log('xxxxxxxxxxxxxxxxxxxxx');
     for (let i = 0; i < list.length; i++) {
         let subscription = list[i].subscription;
-
+        pushMessage(subscription, JSON.stringify({
+            'title': '最近上映了一部电影名字叫做金刚狼，推荐大家去看',
+            'name': '金刚狼'
+        }));
     }
-
     ctx.response.body = {
         status
     };
 });
-/* ===================== */
 
-/* ================================ */
-/* 添加一个接口，用以相应后台同步内的请求 */
-/* ================================ */
-router.get('/sync', async (ctx, next) => {
-    console.log(`Hello ${ctx.request.query.name}, I have received your msg`);
-    ctx.response.body = {
-        status: 0
-    };
-});
-
-/* ================================ */
 app.use(router.routes());
-app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/src'));
 app.listen(port, () => {
     console.log(`listen on port: http://127.0.0.1:${port}`);
+    // open(`http://127.0.0.1:${port}`, 'chrome')
 });

@@ -87,6 +87,12 @@ button {
     cursor: pointer;
 }
 
+input,
+button,
+textarea:focus {
+    outline: none;
+}
+
 .main {
     padding: 25px 15px;
 }
@@ -109,22 +115,17 @@ button {
 .notication-btn {
     position: fixed;
     bottom: 30px;
-    width: 100px;
+    width: 50px;
     right: 5px;
     z-index: 20;
-
-    button {
-        width: 100%;
-        margin-bottom: 5px;
-    }
 }
 
 .notify-btn {
-    background: #F48F2E;
-}
-
-.sync-btn {
     background: #2384E8;
+    height: 50px;
+    border-radius: 50px;
+    width: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
 .panel {
@@ -282,7 +283,7 @@ button {
     }
 }
 
-#js-thanks {
+#thanks {
     display: none;
 }
 

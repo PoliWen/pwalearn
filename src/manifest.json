@@ -1,12 +1,12 @@
 {
-    "name": "图书搜索",
-    "short_name": "书查",
+    "name": "豆瓣app",
+    "short_name": "豆瓣app，你的书影音世界",
     "start_url": "/",
-    "display": "standalone",
+    "display": "standalone",////fullscreen;standalone;minimal-ui;browser
     "background_color": "#333",
-    "description": "一个搜索图书的小WebAPP（基于豆瓣开放接口）",
-    "orientation": "portrait-primary",
-    "theme_color": "#5eace0",
+    "description": "豆瓣,手机豆瓣,豆瓣手机版,豆瓣电影,豆瓣读书,豆瓣同城",
+    "orientation": "portrait-primary",//any;natural;landscapel;landscape-secondary
+    "theme_color": "#5eace0",//#ff0000;#5eace0
     "icons": [{
         "src": "images/icons/book-32.png",
         "sizes": "32x32",
