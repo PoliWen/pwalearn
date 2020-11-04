@@ -29,61 +29,67 @@
 
 <body>
     <!--头部-->
-    <div class="header-c">
-        <div class="logo">
-            豆瓣
+    <template id='header-c'>
+        <div class="header-c">
+            <div class="logo">
+                豆瓣
+            </div>
+            <div class="search-box">
+                <i class="search" id="search-btn"></i>
+                <input type="text" placeholder="关键词查询…" id="search-input">
+            </div>
+            <div class="goto-pc">
+                <img src="images/pc_icon.png" alt="">
+            </div>
         </div>
-        <div class="search-box">
-            <i class="search" id="search-btn"></i>
-            <input type="text" placeholder="关键词查询…" id="search-input">
-        </div>
-        <div class="goto-pc">
-            <img src="images/pc_icon.png" alt="">
-        </div>
-    </div>
+    </template>
 
     <!---导航-->
-    <div class="nav-wrap">
-        <ul class="nav">
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color:#2384E8">找电影</h2>
-                    <span>影院热映</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color: #7A6ADB;">热播剧</h2>
-                    <span>影院热映</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color: #9F7860;">畅销书</h2>
-                    <span>畅销排行</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color: #2AB8CC;">找小组</h2>
-                    <span>志趣相投</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color: #F48F2E;">找音乐</h2>
-                    <span>新碟榜</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <h2 style="color: #42BD56;">豆品</h2>
-                    <span>生活美学</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="main">
+    <template id='nav-c'>
+        <div class="nav-wrap">
+            <ul class="nav">
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color:#2384E8">找电影</h2>
+                        <span>影院热映</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color: #7A6ADB;">热播剧</h2>
+                        <span>影院热映</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color: #9F7860;">畅销书</h2>
+                        <span>畅销排行</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color: #2AB8CC;">找小组</h2>
+                        <span>志趣相投</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color: #F48F2E;">找音乐</h2>
+                        <span>新碟榜</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <h2 style="color: #42BD56;">豆品</h2>
+                        <span>生活美学</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+
+    <template id='hotMovie'>
         <div class="bangdan">
             <h2 class="main-title">
                 <span>豆瓣榜单</span>
@@ -117,6 +123,8 @@
                 </ul>
             </div>
         </div>
+    </template>
+    <template id='movie'>
         <div class="movie">
             <h2 class="main-title">
                 <span>热映电影</span>
@@ -182,10 +190,15 @@
             </div>
 
         </div>
-
-        <div class="notication-btn">
-            <button id="notification-btn" class="notify-btn">通知</button>
-        </div>
+    </template>
+    <div class="notication-btn">
+        <button id="notification-btn" class="notify-btn">通知</button>
+    </div>
+    <div id="app" class="main">
+        <header-c></header-c>
+        <nav-c></nav-c>
+        <hot-Movie></hot-Movie>
+        <movie></movie>
     </div>
     <div class="footer">
         <div class="footer-nav">
@@ -214,9 +227,33 @@
             该片纪念中国人民志愿军抗美援朝出国作战70周年，讲述志愿军战士们在敌我力量悬殊的情况下，以血肉之躯顽强拼搏的英勇事迹。
         </p>
     </section>
-    <div id="app">
 
-    </div>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script>
+        //定义头部组件
+        Vue.component('headerC', {
+            template: '#header-c'
+        })
+        //定义导航组件
+        Vue.component('navC', {
+            template: '#nav-c'
+        })
+        //定义热门电影组件
+        Vue.component('hotMovie', {
+            template: '#hotMovie'
+        })
+        //定义电影组件
+        Vue.component('movie', {
+            template: '#movie'
+        })
+        //实例化一个vue
+        let app = new Vue({
+            el: '#app',
+            components: {}
+        })
+    </script>
+
+    <script type="text/javascript" src="./js/ajax.js"></script>
     <script type="text/javascript" src="./js/base64util.js"></script>
     <script type="text/javascript" src="./js/index.js"></script>
 </body>

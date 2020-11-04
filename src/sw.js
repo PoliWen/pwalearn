@@ -1,8 +1,8 @@
 /**
  * service worker
  */
-const staticCacheName = 'doubandemo-static-v50';
-const apiCacheName = 'doubandemo-api-v50';
+const staticCacheName = 'doubandemo-static-v61';
+const apiCacheName = 'doubandemo-api-v61';
 const cacheFiles = [
     '/',
     './index.html',
