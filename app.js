@@ -7,7 +7,7 @@ const koaBody = require('koa-body');
 const webpush = require('web-push');
 const open = require('open')
 
-const port = process.env.PORT || 9111;
+const port = process.env.PORT || 8090;
 const app = new Koa();
 const router = new Router();
 
@@ -104,5 +104,5 @@ app.use(router.routes());
 app.use(serve(__dirname + '/src'));
 app.listen(port, () => {
     console.log(`listen on port: http://127.0.0.1:${port}`);
-    // open(`http://127.0.0.1:${port}`, 'chrome')
+    open(`http://127.0.0.1:${port}`, 'chrome')
 });
