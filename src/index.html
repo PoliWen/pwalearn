@@ -151,6 +151,7 @@
         Vue.component('headerC', {
             template: '#header-c'
         })
+
         //定义导航组件
         Vue.component('navC', {
             data: function () {
@@ -189,10 +190,12 @@
             },
             template: '#nav-c',
         })
+
         //定义热门电影组件
         Vue.component('hotMovie', {
             template: '#hotMovie'
         })
+
         //定义电影组件
         Vue.component('movie', {
             data() {
@@ -215,7 +218,6 @@
                     this.isRequre = true;
                     this.fetchDataFromCache(url).then(res => {
                         this.isRequre = false;
-                        console.log('从缓存里面拿取到了接口的数据');
                         if (res) {
                             this.movieList = res.data;
                             cachData = res.data;
@@ -223,7 +225,6 @@
                         return this.fetchDataFromRemote(url)
                     }).then(data => {
                         //如果远程的数据跟缓存的数据不一致那么就用远程的数据去重新渲染本地的数据
-                        console.log('111111111111');
                         this.isRequre = false;
                         if (JSON.stringify(data) !== JSON.stringify(cachData)) {
                             console.log('如果数据不一致需要进行更新操作');

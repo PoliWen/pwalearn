@@ -23,8 +23,8 @@ window.$ = {
         requesUrl = options.cache ? requesUrl + cacheString : requesUrl
         xhr.open(options.method || 'GET', requesUrl, options.asyn || true)
         if (options.method == 'POST') {
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-            xhr.send(queryData)
+            xhr.setRequestHeader('Content-type', 'application/json')
+            xhr.send(data)
         } else {
             xhr.send()
         }

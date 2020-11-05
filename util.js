@@ -1,5 +1,6 @@
+//一个存储数据的工具
 const request   = require('request');
-const Datastore = require('nedb');
+const Datastore = require('nedb'); //一个nosql的数据库，类似于mogodb
 
 const db = new Datastore();
 

@@ -7,7 +7,7 @@ const koaBody = require('koa-body');
 const webpush = require('web-push');
 const open = require('open')
 
-const port = process.env.PORT || 9093;
+const port = process.env.PORT || 9991;
 const app = new Koa();
 const router = new Router();
 
@@ -119,8 +119,6 @@ router.post('/push', koaBody(), async ctx => {
     }) : await util.findAll();
     let status = list.length > 0 ? 0 : -1;
 
-    console.log(list);
-    console.log('xxxxxxxxxxxxxxxxxxxxx');
     for (let i = 0; i < list.length; i++) {
         let subscription = list[i].subscription;
         pushMessage(subscription, JSON.stringify({
