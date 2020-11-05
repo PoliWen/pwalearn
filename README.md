@@ -1,3 +1,3 @@
 # 学习pwa技术
-# npm install
-# npm run dev
+### npm install
+### npm run dev
