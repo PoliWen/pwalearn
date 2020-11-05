@@ -48,40 +48,10 @@
     <template id='nav-c'>
         <div class="nav-wrap">
             <ul class="nav">
-                <li>
+                <li v-for="item in navList">
                     <a href="javascript:;">
-                        <h2 style="color:#2384E8">找电影</h2>
-                        <span>影院热映</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <h2 style="color: #7A6ADB;">热播剧</h2>
-                        <span>影院热映</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <h2 style="color: #9F7860;">畅销书</h2>
-                        <span>畅销排行</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <h2 style="color: #2AB8CC;">找小组</h2>
-                        <span>志趣相投</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <h2 style="color: #F48F2E;">找音乐</h2>
-                        <span>新碟榜</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <h2 style="color: #42BD56;">豆品</h2>
-                        <span>生活美学</span>
+                        <h2 :style="{color:item.color}">{{item.mainTitle}}</h2>
+                        <span>{{item.subTitle}}</span>
                     </a>
                 </li>
             </ul>
@@ -98,9 +68,7 @@
             <div class="list">
                 <ul>
                     <li>
-                        <div class="left-title">
-
-                        </div>
+                        <div class="left-title"></div>
                         <div class="right-info">
                             <span class="mask"></span>
                             <p>1.肖申克的救赎<span>9.7</span></p>
@@ -126,64 +94,20 @@
     </template>
     <template id='movie'>
         <div class="movie">
+            <div id="loading" class="loading" v-if="isRequre"></div>
             <h2 class="main-title">
                 <span>热映电影</span>
                 <a href="javascript:;">查看更多</a>
             </h2>
             <div class="list">
                 <ul>
-                    <li>
+                    <li v-for="item in movieList">
                         <a>
-                            <img src="images/movie01.jpg" alt="">
+                            <img :src="item.coverImg" alt="">
                         </a>
-                        <h3>数码宝贝</h3>
+                        <h3>{{item.title}}</h3>
                         <p class="score">
-                            评分：<span>7.6</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a>
-                            <img src="images/movie02.jpg" alt="">
-                        </a>
-                        <h3>数码宝贝</h3>
-                        <p class="score">
-                            评分：<span>7.6</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a>
-                            <img src="images/movie03.jpg" alt="">
-                        </a>
-                        <h3>数码宝贝</h3>
-                        <p class="score">
-                            评分：<span>7.6</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a>
-                            <img src="images/movie04.jpg" alt="">
-                        </a>
-                        <h3>数码宝贝</h3>
-                        <p class="score">
-                            评分：<span>7.6</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a>
-                            <img src="images/movie05.jpg" alt="">
-                        </a>
-                        <h3>数码宝贝</h3>
-                        <p class="score">
-                            评分：<span>7.6</span>
-                        </p>
-                    </li>
-                    <li>
-                        <a>
-                            <img src="images/movie06.jpg" alt="">
-                        </a>
-                        <h3>数码宝贝</h3>
-                        <p class="score">
-                            评分：<span>7.6</span>
+                            评分：<span>{{item.score}}</span>
                         </p>
                     </li>
                 </ul>
@@ -214,21 +138,14 @@
             Copyright © 2007-2019
         </div>
     </div>
-    <main>
-        <div id="loading" class="loading"></div>
-        <div id="tip" class="tip"></div>
-        <ul class="list" id="list"></ul>
-        <a id="thanks" class="thanks" href="https://developers.douban.com/wiki/?title=guide">- 本Demo基于豆瓣API，感谢豆瓣开放平台
-            -</a>
-    </main>
     <section class="panel">
         <p>
             《金刚川》是由管虎、郭帆、路阳联合执导的抗美援朝题材电影，由张译、吴京、李九霄、魏晨、邓超领衔主演，邓超特别出演，该片于2020年10月23日在中国内地上映 [1-2] 。
             该片纪念中国人民志愿军抗美援朝出国作战70周年，讲述志愿军战士们在敌我力量悬殊的情况下，以血肉之躯顽强拼搏的英勇事迹。
         </p>
     </section>
-
     <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript" src="./js/ajax.js"></script>
     <script>
         //定义头部组件
         Vue.component('headerC', {
@@ -236,7 +153,41 @@
         })
         //定义导航组件
         Vue.component('navC', {
-            template: '#nav-c'
+            data: function () {
+                return {
+                    navList: [{
+                            mainTitle: '找电影',
+                            subTitle: '影院热映',
+                            color: '#2384E8'
+                        }, {
+                            mainTitle: '热播剧',
+                            subTitle: '影院热映',
+                            color: '#7A6ADB'
+                        },
+                        {
+                            mainTitle: '畅销书',
+                            subTitle: '畅销排行',
+                            color: '#9F7860'
+                        },
+                        {
+                            mainTitle: '找小组',
+                            subTitle: '志趣相投',
+                            color: '#2AB8CC'
+                        },
+                        {
+                            mainTitle: '找音乐',
+                            subTitle: '新碟榜',
+                            color: '#F48F2E'
+                        },
+                        {
+                            mainTitle: '豆品',
+                            subTitle: '生活美学',
+                            color: '#42BD56'
+                        }
+                    ]
+                }
+            },
+            template: '#nav-c',
         })
         //定义热门电影组件
         Vue.component('hotMovie', {
@@ -244,16 +195,85 @@
         })
         //定义电影组件
         Vue.component('movie', {
-            template: '#movie'
+            data() {
+                return {
+                    movieList: [],
+                    isRequre: false,
+                }
+            },
+            template: '#movie',
+            created() {
+                this.fetchMoviesList('/queryMovies')
+            },
+            methods: {
+                /*
+                 *获取电影列表信息
+                 */
+                fetchMoviesList(url) {
+                    let cachData;
+                    let _this = this;
+                    this.isRequre = true;
+                    this.fetchDataFromCache(url).then(res => {
+                        this.isRequre = false;
+                        console.log('从缓存里面拿取到了接口的数据');
+                        if (res) {
+                            this.movieList = res.data;
+                            cachData = res.data;
+                        }
+                        return this.fetchDataFromRemote(url)
+                    }).then(data => {
+                        //如果远程的数据跟缓存的数据不一致那么就用远程的数据去重新渲染本地的数据
+                        console.log('111111111111');
+                        this.isRequre = false;
+                        if (JSON.stringify(data) !== JSON.stringify(cachData)) {
+                            console.log('如果数据不一致需要进行更新操作');
+                            this.movieList = data;
+                        }
+                    })
+                },
+                /**
+                 * 从远程接口获取数据
+                 */
+                fetchDataFromRemote(url) {
+                    return new Promise((resolve, reject) => {
+                        $.ajax({
+                            url: url,
+                            method: 'get',
+                            type: 'json',
+                            success(res) {
+                                if (res.status) {
+                                    resolve(res.data)
+                                }
+                            },
+                            error() {
+                                reject
+                            }
+                        })
+                    })
+                },
+                /**
+                 * 从缓存里面获取是否存在接口返回的数据
+                 */
+                fetchDataFromCache(url) {
+                    if ('caches' in window) {
+                        return caches.match(url).then(cache => {
+                            if (!cache) {
+                                return;
+                            }
+                            return cache.json();
+                        });
+                    } else {
+                        return Promise.resolve();
+                    }
+                }
+            }
         })
         //实例化一个vue
         let app = new Vue({
             el: '#app',
-            components: {}
         })
     </script>
 
-    <script type="text/javascript" src="./js/ajax.js"></script>
     <script type="text/javascript" src="./js/base64util.js"></script>
     <script type="text/javascript" src="./js/index.js"></script>
 </body>

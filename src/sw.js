@@ -1,13 +1,15 @@
 /**
  * service worker
  */
-const staticCacheName = 'doubandemo-static-v61';
-const apiCacheName = 'doubandemo-api-v61';
+const staticCacheName = 'doubandemo-static-v115';
+const apiCacheName = 'doubandemo-api-v115';
 const cacheFiles = [
     '/',
     './index.html',
     './js/base64util.js',
     './js/index.js',
+    './js/ajax.js',
+    './js/vue.js',
     './css/style.css',
     './images/loading.svg',
     './images/logo.png',
@@ -17,11 +19,13 @@ const cacheFiles = [
     './images/movie04.jpg',
     './images/movie05.jpg',
     './images/movie06.jpg',
+    './images/movie07.jpg',
+    './images/movie08.jpg',
     './images/pc_icon.png',
     './images/search-icon.png',
     './images/top500_bg.jpg',
     './images/top500.jpg',
-    './images/weekly.jpg'
+    './images/weekly.jpg',
 ];
 
 // 监听install事件，安装完成后，进行文件缓存
@@ -38,7 +42,6 @@ self.addEventListener('install', function (event) {
 self.addEventListener('activate', function (event) {
     console.log('Service Worker 状态： activate');
     let cachePromise = caches.keys().then(function (keys) {
-        console.log('xxxxxxxxxxxxxxxxxx', keys);
         return Promise.all(keys.map(function (key) {
             if (key !== staticCacheName && key !== apiCacheName) {
                 return caches.delete(key);
@@ -51,9 +54,9 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-    // 需要缓存的xhr请求
+    // 需要缓存的api请求
     let cacheRequestUrls = [
-        '/book?'
+        '/queryMovies'
     ];
     console.log('现在正在请求：' + event.request.url);
 
@@ -65,10 +68,11 @@ self.addEventListener('fetch', function (event) {
     if (needCache) {
         // 需要缓存
         // 使用fetch请求数据，并将请求结果clone一份缓存到cache
-        // 此部分缓存后在browser中使用全局变量caches获取
+        console.log('2222222222222');
         caches.open(apiCacheName).then(function (cache) {
             return fetch(event.request).then(function (response) {
-                cache.put(e.request.url, response.clone());
+                console.log(response);
+                cache.put(event.request.url, response.clone());
                 return response;
             });
         });
@@ -87,7 +91,6 @@ self.addEventListener('fetch', function (event) {
 });
 
 // 监听服务器发送过来的消息
-
 self.addEventListener('push', function (event) {
     let data = event.data;
     if (event.data) {

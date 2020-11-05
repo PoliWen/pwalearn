@@ -7,21 +7,54 @@ const koaBody = require('koa-body');
 const webpush = require('web-push');
 const open = require('open')
 
-const port = process.env.PORT || 8090;
+const port = process.env.PORT || 9093;
 const app = new Koa();
 const router = new Router();
 
 /**
- * 根据关键词获取图书信息
+ * 获取电影列表信息
  */
-router.get('/book', async (ctx, next) => {
-    let query = ctx.request.query;
-    let {
-        q,
-        fields
-    } = query;
-    let url = `https://api.douban.com/v2/book/search?q=${q}&fields=${fields}&count=10`;
-    let res = await util.get(url);
+router.get('/queryMovies', async (ctx, next) => {
+    let res = {
+        status: 1,
+        data: [{
+            title: '数码宝贝：最后的进化',
+            coverImg: 'images/movie01.jpg',
+            score: '7.6'
+        }, {
+            title: '金刚川',
+            coverImg: 'images/movie02.jpg',
+            score: '6.5'
+        }, {
+            title: '月半爱丽丝',
+            coverImg: 'images/movie03.jpg',
+            score: '3.9'
+        }, {
+            title: '掬水月在手',
+            coverImg: 'images/movie04.jpg',
+            score: '8.1'
+        }, {
+            title: '我和我的家乡',
+            coverImg: 'images/movie05.jpg',
+            score: '7.4'
+        }, {
+            title: '八百',
+            coverImg: 'images/movie06.jpg',
+            score: '7.6'
+        }, {
+            title: '姜子牙',
+            coverImg: 'images/movie07.jpg',
+            score: '7.0'
+        }, {
+            title: '女巫',
+            coverImg: 'images/movie08.jpg',
+            score: '5.8'
+        }, {
+            title: '波拉特',
+            coverImg: 'images/movie09.jpg',
+            score: '7.4'
+        }]
+    }
     ctx.response.body = res;
 });
 
