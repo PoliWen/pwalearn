@@ -7,7 +7,7 @@ const koaBody = require('koa-body');
 const webpush = require('web-push');
 const open = require('open')
 
-const port = process.env.PORT || 9991;
+const port = process.env.PORT || 8082;
 const app = new Koa();
 const router = new Router();
 
